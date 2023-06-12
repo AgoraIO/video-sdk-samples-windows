@@ -1,0 +1,1 @@
+D:\TestAgoraRepo\video-sdk-samples-windows\secure_authentication_token\x64\Debug\secure_authentication_token.vcxproj.CopyComplete

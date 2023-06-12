@@ -1,0 +1,1 @@
+D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\x64\Debug\call_quality.vcxproj.CopyComplete

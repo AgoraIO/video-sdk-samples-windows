@@ -1,0 +1,7 @@
+﻿  agora_manager.cpp
+D:\TestAgoraRepo\video-sdk-samples-windows\agora_manager\agora_manager.cpp(93,15): warning C4244: '=': conversion from 'WPARAM' to 'agora::rtc::uid_t', possible loss of data
+D:\TestAgoraRepo\video-sdk-samples-windows\agora_manager\agora_manager.cpp(99,14): warning C4244: '=': conversion from 'WPARAM' to 'unsigned int', possible loss of data
+  agora_manager_gui.cpp
+  Generating Code...
+agora_manager.obj : warning LNK4006: "public: class tinyxml2::XMLNode * __cdecl tinyxml2::XMLNode::FirstChild(void)" (?FirstChild@XMLNode@tinyxml2@@QEAAPEAV12@XZ) already defined in tinyxml2.lib(tinyxml2.dll); second definition ignored
+  agora_manager.vcxproj -> D:\TestAgoraRepo\video-sdk-samples-windows\agora_manager\x64\Debug\agora_manager.lib
