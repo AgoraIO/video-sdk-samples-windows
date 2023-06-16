@@ -2,7 +2,7 @@
 #include "agora_manager.h"
 
 
-class CallQualityEventHandler : public IEventHandlerStrategy
+class CallQualityEventHandler : public AgoraManagerEventHandler
 {
 public:
 	

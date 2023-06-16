@@ -1,33 +1,33 @@
 ﻿  call_quality.cpp
-D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(83,43): warning C4477: 'swprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'WPARAM'
-D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(83,43): message : consider using '%lld' in the format string
-D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(83,43): message : consider using '%Id' in the format string
-D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(83,43): message : consider using '%I64d' in the format string
-D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(83,43): warning C4477: 'swprintf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'LPARAM'
-D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(83,43): message : consider using '%lld' in the format string
-D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(83,43): message : consider using '%Id' in the format string
-D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(83,43): message : consider using '%I64d' in the format string
-D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(94,43): warning C4477: 'swprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'WPARAM'
-D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(94,43): message : consider using '%lld' in the format string
-D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(94,43): message : consider using '%Id' in the format string
-D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(94,43): message : consider using '%I64d' in the format string
-D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(94,43): warning C4477: 'swprintf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'LPARAM'
-D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(94,43): message : consider using '%lld' in the format string
-D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(94,43): message : consider using '%Id' in the format string
-D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(94,43): message : consider using '%I64d' in the format string
-D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(105,22): warning C4244: 'argument': conversion from 'WPARAM' to 'int', possible loss of data
-D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(120,43): warning C4477: 'swprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'WPARAM'
-D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(120,43): message : consider using '%lld' in the format string
-D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(120,43): message : consider using '%Id' in the format string
-D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(120,43): message : consider using '%I64d' in the format string
-D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(120,43): warning C4477: 'swprintf' : format string '% d' requires an argument of type 'int', but variadic argument 2 has type 'LPARAM'
-D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(120,43): message : consider using '%lld' in the format string
-D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(120,43): message : consider using '%Id' in the format string
-D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(120,43): message : consider using '%I64d' in the format string
-D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(131,43): warning C4477: 'swprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'WPARAM'
-D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(131,43): message : consider using '%lld' in the format string
-D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(131,43): message : consider using '%Id' in the format string
-D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(131,43): message : consider using '%I64d' in the format string
+D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(74,43): warning C4477: 'swprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'WPARAM'
+D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(74,43): message : consider using '%lld' in the format string
+D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(74,43): message : consider using '%Id' in the format string
+D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(74,43): message : consider using '%I64d' in the format string
+D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(74,43): warning C4477: 'swprintf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'LPARAM'
+D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(74,43): message : consider using '%lld' in the format string
+D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(74,43): message : consider using '%Id' in the format string
+D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(74,43): message : consider using '%I64d' in the format string
+D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(85,43): warning C4477: 'swprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'WPARAM'
+D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(85,43): message : consider using '%lld' in the format string
+D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(85,43): message : consider using '%Id' in the format string
+D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(85,43): message : consider using '%I64d' in the format string
+D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(85,43): warning C4477: 'swprintf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'LPARAM'
+D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(85,43): message : consider using '%lld' in the format string
+D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(85,43): message : consider using '%Id' in the format string
+D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(85,43): message : consider using '%I64d' in the format string
+D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(96,22): warning C4244: 'argument': conversion from 'WPARAM' to 'int', possible loss of data
+D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(111,43): warning C4477: 'swprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'WPARAM'
+D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(111,43): message : consider using '%lld' in the format string
+D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(111,43): message : consider using '%Id' in the format string
+D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(111,43): message : consider using '%I64d' in the format string
+D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(111,43): warning C4477: 'swprintf' : format string '% d' requires an argument of type 'int', but variadic argument 2 has type 'LPARAM'
+D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(111,43): message : consider using '%lld' in the format string
+D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(111,43): message : consider using '%Id' in the format string
+D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(111,43): message : consider using '%I64d' in the format string
+D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(122,43): warning C4477: 'swprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'WPARAM'
+D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(122,43): message : consider using '%lld' in the format string
+D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(122,43): message : consider using '%Id' in the format string
+D:\TestAgoraRepo\video-sdk-samples-windows\call_quality\call_quality.cpp(122,43): message : consider using '%I64d' in the format string
   main.cpp
   Generating Code...
   call_quality.vcxproj -> D:\TestAgoraRepo\video-sdk-samples-windows\agora_manager\x64\Debug\call_quality.exe

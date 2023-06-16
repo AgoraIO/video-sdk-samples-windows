@@ -1,8 +1,7 @@
-// secure_authentication_token.cpp : This file contains the 'main' function. Program execution begins and ends there.
+// main.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
 #include "secure_token_authentication.h"
-#include <tinyxml2.h>
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int)
 {

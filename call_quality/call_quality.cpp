@@ -1,14 +1,6 @@
-// call_quality.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+// call_quality.cpp 
+
 #include "call_quality.h"
-/*
-#define EID_NETWORK_QUALITY 0x00000010
-#define EID_LAST_MILE_RESULT 0x00000011
-#define EID_RTC_STATS 0x00000012
-#define EID_REMOTE_VIDEO_STATE_CHANGED 0x00000013
-#define EID_REMOTE_VIDEO_STATS 0x00000014
-#define EID_LAST_MILE_QUALITY 0x00000015
-*/
 
 #define EID_NETWORK_QUALITY 10
 #define EID_LAST_MILE_RESULT 11
@@ -73,7 +65,6 @@ void CallQualityEventHandler::onNetworkQuality(uid_t uid, int txQuality, int rxQ
 		::PostMessage(m_hMsgHandler, WM_MSGID(EID_NETWORK_QUALITY), (WPARAM)txQuality, (LPARAM)rxQuality);
 	}
 }
-
 
 
 LRESULT CallQuality::OnEIDRemoteVideoStateChanged(WPARAM Uid, LPARAM NewState)
@@ -297,7 +288,12 @@ void CallQuality::setupVideoSDKEngine()
 	// Set channel profile in the engine to the CHANNEL_PROFILE_LIVE_BROADCASTING.
 	context.channelProfile = CHANNEL_PROFILE_LIVE_BROADCASTING;
 	// Create log file to check the status
-	context.logConfig.filePath = R"(C:\\Users\\Varun\\AppData\\Local\Agora\AgoraImplementation\agorasdk.log)";
+	tinyxml2::XMLNode* root = AgoraManager::getConfigXMLRoot(AgoraManager::config_file);
+
+	tinyxml2::XMLElement* userNmaeElement = root->FirstChildElement("user_name");
+	std::string user_name = userNmaeElement && userNmaeElement->GetText() ? userNmaeElement->GetText() : "";
+	std::string file_path = "C:\\Users\\"+ user_name + "\\AppData\\Local\\Agora\\AgoraImplementation\\agorasdk.log";
+	context.logConfig.filePath = file_path.c_str();
 	context.logConfig.fileSizeInKB = 256;
 	context.logConfig.level = agora::commons::LOG_LEVEL::LOG_LEVEL_WARN;
 	// Initialize the engine using the context variable.

@@ -10,11 +10,11 @@ std::unique_ptr<tinyxml2::XMLDocument> AgoraManager::doc = std::make_unique<tiny
 
 void AgoraManagerEventHandler::onUserJoined(uid_t uid, int elapsed)
 {
-	HWND m_hMsgHandler = getMsgEventHandler();
+	HWND MsgEventHandler = getMsgEventHandler();
 	// Send a notification to CAgoraImplementationDlg class to setup a remote video view.
-	if (m_hMsgHandler)
+	if (MsgEventHandler)
 	{
-		::PostMessage(m_hMsgHandler, WM_MSGID(EID_USER_JOINED), (WPARAM)uid, (LPARAM)elapsed);
+		::PostMessage(MsgEventHandler, WM_MSGID(EID_USER_JOINED), (WPARAM)uid, (LPARAM)elapsed);
 	}
 	
 }
@@ -35,25 +35,6 @@ void AgoraManagerEventHandler::onLeaveChannel(const RtcStats& stats)
 	// Occurs when you leave a channel.
 	MessageBox(NULL, L"You left the channel", L"Notification", NULL);
 }
-/*
-void AgoraManagerEventHandler::onError(int err, const char* msg) {
-	MessageBox(NULL, L"Got error ", L"Notification", NULL);
-}
-
-HWND AgoraManager::getMsgEventHandler()
-{
-	
-	AgoraManagerEventHandler* agoraManagerEventHandler =
-		dynamic_cast<AgoraManagerEventHandler*>(AgoraEventStrategy.get());
-	if (agoraManagerEventHandler != nullptr) {
-		return agoraManagerEventHandler->getMsgEventHandler();
-	}
-	else
-		return nullptr;
-}
-*/
-
-
 
 void AgoraManager::setupVideoSDKEngine()
 {
@@ -70,9 +51,7 @@ void AgoraManager::setupVideoSDKEngine()
 	// Pass your app ID to the context.
 	context.appId = appId.c_str();
 	// Pass an object of agoraEventHandler class to receive callbacks.
-	//HWND agoraEventHandler = AgoraEventStrategy->getMsgEventHandler();
 	context.eventHandler = AgoraEventStrategy.get();
-	
 	// Set channel profile in the engine to the CHANNEL_PROFILE_LIVE_BROADCASTING.
 	context.channelProfile = CHANNEL_PROFILE_LIVE_BROADCASTING;
 	// Initialize the engine using the context variable.
@@ -80,8 +59,6 @@ void AgoraManager::setupVideoSDKEngine()
 	// Set the user role to Host.
 	agoraEngine->setClientRole(CLIENT_ROLE_TYPE::CLIENT_ROLE_BROADCASTER);
 }
-
-
 
 LRESULT AgoraManager::OnEIDUserJoined(WPARAM wParam, LPARAM lParam)
 {
@@ -162,9 +139,6 @@ void AgoraManager::leave()
 	agoraEngine->disableVideo();
 	// Disable the local microphone.
 	agoraEngine->disableAudio();
-	token = "";
-	//agoraEngine->renewToken(token.c_str());
-	
 }
 
 
@@ -176,8 +150,10 @@ bool AgoraManager::isStopping() {
 	return shouldStop;
 }
 
-void AgoraManager::handleGuiAction(int commandId)  {
-	switch (commandId) {
+void AgoraManager::handleGuiAction(int commandId)
+{
+	switch (commandId)
+	{
 	case 1: // Join Button ID is 1
 		// Handle join button click
 		EnableWindow(gui->joinButton, FALSE); // Join button
@@ -209,7 +185,8 @@ void AgoraManager::handleGuiUserMsg(int msgId, WPARAM wparam, LPARAM lparam)
 
 	//AgoraManager* _pAgoraManager = gui->getAgoraManager();
 	// Handle WM_USER messages based on the passed msgId
-	switch (msgId) {
+	switch (msgId)
+	{
 	case EID_USER_JOINED:
 		if (this != nullptr) {
 			OnEIDUserJoined(wparam, lparam);
@@ -222,15 +199,14 @@ void AgoraManager::handleGuiUserMsg(int msgId, WPARAM wparam, LPARAM lparam)
 	}
 }
 
-void AgoraManager::SetupGui() {
+void AgoraManager::SetupGui() 
+{
 	gui->RegisterAndCreateWindow();
 	gui->ShowAndUpdateWindow();
-	// More GUI setup code here, if needed...
 }
 
-void setupVideoSDKEngine();
-
-void AgoraManager::Run() {
+void AgoraManager::Run()
+{
 	SetupGui();
 	// Setup an instance of the Video SDK.
 	setupVideoSDKEngine();
@@ -256,7 +232,6 @@ tinyxml2::XMLNode* AgoraManager::getConfigXMLRoot(const std::string config_file)
 	}
 	return root;
 }
-
 
 void AgoraManager::ceateSpecificGui(HWND& guiWindowReference)
 {

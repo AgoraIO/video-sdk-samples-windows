@@ -1,5 +1,8 @@
 <root>
     <appId>b446c01ca25449c988ad884829c4cec7</appId>
     <channelName>demo_test</channelName>
-    <token>007eJxTYNBbaVrocmPPadcducd2Ga8NuD+/6VM5A38F11c/0yDr/GQFhiQTE7NkA8PkRCNTExPLZEsLi8QUCwsTCyPLZJPk1GTzI+ZtKQ2BjAw2M2xZGBkgEMTnZEhJzc2PL0ktLmFgAAC7PCBc"</token>
+    <token></token>
+	<serverUrl>https://agora-token-service-production-d6a2.up.railway.app</serverUrl>
+	<user_name>Varun</user_name>
+	<expireTime>60</expireTime>
 </root>

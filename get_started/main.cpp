@@ -2,7 +2,6 @@
 //
 
 #include "get_started.h"
-#include <tinyxml2.h>
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int)
 {
