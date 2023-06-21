@@ -28,7 +28,6 @@ void AgoraManagerEventHandler::onUserOffline(uid_t uid, USER_OFFLINE_REASON_TYPE
 	// Occurs when the remote user drops offline or leave the channel.
 	MessageBox(NULL, L"Remote user Leave the channel", L"Notification", NULL);
 
-	//MessageBox(L"Remote user Leave the channel");
 }
 void AgoraManagerEventHandler::onLeaveChannel(const RtcStats& stats)
 {
@@ -121,9 +120,6 @@ void AgoraManager::join()
 	if (0 != agoraEngine->joinChannel(token.c_str(), channelName.c_str(), 0, NULL))
 	{
 		MessageBox(NULL, L"AgoraManager::joinChannel() error", L"Notification", NULL);
-		//Enable join Button again n case of error 
-		//EnableWindow(gui->joinButton, TRUE); // Join button
-		//EnableWindow(gui->leaveButton, FALSE); // Leave button
 		return;
 
 	}
@@ -233,7 +229,7 @@ tinyxml2::XMLNode* AgoraManager::getConfigXMLRoot(const std::string config_file)
 	return root;
 }
 
-void AgoraManager::ceateSpecificGui(HWND& guiWindowReference)
+void AgoraManager::createSpecificGui(HWND& guiWindowReference)
 {
 	//do_nothing
 }

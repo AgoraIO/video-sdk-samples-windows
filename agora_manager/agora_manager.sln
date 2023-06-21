@@ -20,6 +20,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "call_quality", "..\call_qua
 		{CB5245FE-A37F-4863-ADE8-717E6093F5D9} = {CB5245FE-A37F-4863-ADE8-717E6093F5D9}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "custom_audio_and_video", "..\custom_audio_and_video\custom_audio_and_video.vcxproj", "{41C78778-4C65-4490-B06A-E481986B015F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CB5245FE-A37F-4863-ADE8-717E6093F5D9} = {CB5245FE-A37F-4863-ADE8-717E6093F5D9}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -60,6 +65,14 @@ Global
 		{AE9CE9AE-2DF3-4787-B5F3-CE90EA09D17B}.Release|x64.Build.0 = Release|x64
 		{AE9CE9AE-2DF3-4787-B5F3-CE90EA09D17B}.Release|x86.ActiveCfg = Release|Win32
 		{AE9CE9AE-2DF3-4787-B5F3-CE90EA09D17B}.Release|x86.Build.0 = Release|Win32
+		{41C78778-4C65-4490-B06A-E481986B015F}.Debug|x64.ActiveCfg = Debug|x64
+		{41C78778-4C65-4490-B06A-E481986B015F}.Debug|x64.Build.0 = Debug|x64
+		{41C78778-4C65-4490-B06A-E481986B015F}.Debug|x86.ActiveCfg = Debug|Win32
+		{41C78778-4C65-4490-B06A-E481986B015F}.Debug|x86.Build.0 = Debug|Win32
+		{41C78778-4C65-4490-B06A-E481986B015F}.Release|x64.ActiveCfg = Release|x64
+		{41C78778-4C65-4490-B06A-E481986B015F}.Release|x64.Build.0 = Release|x64
+		{41C78778-4C65-4490-B06A-E481986B015F}.Release|x86.ActiveCfg = Release|Win32
+		{41C78778-4C65-4490-B06A-E481986B015F}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

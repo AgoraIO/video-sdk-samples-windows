@@ -25,7 +25,7 @@ public:
 		
 	}
 
-	virtual void ceateSpecificGui(HWND& guiWindowReference)override;
+	virtual void createSpecificGui(HWND& guiWindowReference)override;
 	virtual void setupVideoSDKEngine()override;
 	virtual void handleGuiUserMsg(int msgId, WPARAM wparam, LPARAM lparam)override;
 	virtual void handleGuiAction(int commandId) override;

@@ -189,7 +189,7 @@ void CallQuality::handleGuiUserMsg(int msgId, WPARAM wparam, LPARAM lparam)
 }
 
 
-void CallQuality::ceateSpecificGui(HWND& guiWindowReference)
+void CallQuality::createSpecificGui(HWND& guiWindowReference)
 {
 	
 	HWND parentWindow = guiWindowReference;

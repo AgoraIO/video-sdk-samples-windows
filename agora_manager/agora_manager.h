@@ -42,14 +42,14 @@ public:
     virtual void setupVideoSDKEngine();
 
     LRESULT OnEIDUserJoined(WPARAM wParam, LPARAM lParam);
-    void createvideoCanvasAndJoin();
+    virtual void createvideoCanvasAndJoin();
     virtual void join();
     virtual void leave();
     void signalStop();
     bool isStopping();
     void handleGuiAction(int commandId) override;
     void handleGuiUserMsg(int msgId, WPARAM wparam, LPARAM lparam) override;
-    virtual void ceateSpecificGui(HWND& guiWindowReference);
+    virtual void createSpecificGui(HWND& guiWindowReference);
 
     // Load and read "configuration.xml" to get user input
     static tinyxml2::XMLNode*  getConfigXMLRoot(const std::string config_file);

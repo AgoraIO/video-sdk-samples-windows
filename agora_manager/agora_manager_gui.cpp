@@ -53,7 +53,7 @@ void AgoraManagerGui::RegisterAndCreateWindow() {
     EnableWindow(joinButton, TRUE);
     EnableWindow(leaveButton, FALSE);
 
-    pManager->ceateSpecificGui(hwnd);
+    pManager->createSpecificGui(hwnd);
 }
 
 void AgoraManagerGui::ShowAndUpdateWindow()
