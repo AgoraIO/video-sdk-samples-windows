@@ -7,6 +7,6 @@
 	<expireTime>60</expireTime>
 	<isCustomVideoSource>true</isCustomVideoSource>
 	<isCustomAudioSource>true</isCustomAudioSource>
-	<customVideoPath>C:\Users\Varun\Downloads\sample.mp4</customVideoPath>
+	<customVideoPath>..\custom_audio_and_video\sample.mp4</customVideoPath>
 	<customAudioPath>..\custom_audio_and_video\sample_audio.wav</customAudioPath>
 </root>
