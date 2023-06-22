@@ -11,7 +11,7 @@ By default, Video SDK uses the basic audio and video modules on the device your 
 
 For context on this sample, and a full explanation of the essential code snippets used in this project, read the following guides:
 
-[Agora's full token authentication guide](https://docs.agora.io/en/video-calling/develop/custom-video-and-audio?platform=windows)
+[Agora's full documentation for custom audio and video sources](https://docs.agora.io/en/video-calling/develop/custom-video-and-audio?platform=windows)
 
 ## How to run this project
 
