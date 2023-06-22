@@ -23,7 +23,7 @@ To run a sample project in this repository, take the following steps:
 
 1. Clone this Git repository by executing the following command in a terminal window:
     ```bash
-    git clone https://github.com/AgoraIO/video-sdk-samples-android
+    git clone https://github.com/AgoraIO/video-sdk-samples-windows
     ```
 2. Double click on `<root>/agora_manager/agora_manager.sln` . It will open the solution in Visual Studio.
 3. Select the project you want to run, right click and `set as startup project'
