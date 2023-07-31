@@ -1,1 +1,0 @@
-D:\TestAgoraRepo\video-sdk-samples-windows\get_started\x64\Debug\get_started.vcxproj.CopyComplete

@@ -1,1 +1,0 @@
-D:\TestAgoraRepo\video-sdk-samples-windows\custom_audio_and_video\x64\Debug\custom_audio_and_video.vcxproj.CopyComplete

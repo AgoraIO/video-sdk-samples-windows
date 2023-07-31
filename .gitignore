@@ -1,2 +1,10 @@
 .vs/
 *.ipch
+# Ignore Visual Studio generated files
+*.ilk
+*.pdb
+*.obj
+
+# Ignore log files
+*.log
+*.tlog

@@ -1,5 +1,1 @@
-﻿  main.cpp
-  secure_token_authentication.cpp
-D:\TestAgoraRepo\video-sdk-samples-windows\secure_authentication_token\secure_token_authentication.cpp(72,28): warning C4101: 'e': unreferenced local variable
-  Generating Code...
-  secure_authentication_token.vcxproj -> D:\TestAgoraRepo\video-sdk-samples-windows\agora_manager\x64\Debug\secure_authentication_token.exe
+﻿

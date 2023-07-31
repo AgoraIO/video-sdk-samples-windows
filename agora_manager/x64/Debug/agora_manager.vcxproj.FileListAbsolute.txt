@@ -1,2 +1,0 @@
-D:\video-sdk-samples-windows\agora_manager\x64\Debug\agora_manager.exe
-D:\TestAgoraRepo\video-sdk-samples-windows\agora_manager\x64\Debug\agora_manager.lib
