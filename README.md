@@ -8,7 +8,6 @@ The runnable code examples are:
 
 - [SDK quickstart](./get_started/) - The minimum code you need to integrate high-quality, low-latency Video Calling features into your app using Video SDK.
 - [Call quality best practice](./call_quality/) - How to use Video SDK features to ensure optimal audio and video quality in your app. 
-- [Secure authentication with Tokens](./secure_authentication_token/) - The minimum code you need to quickly set up an authentication token server, retrieve a token from the server, and use it to connect securely to a specific Video Calling channel.
 - [Custom video and audio surces](./custom_audio_and_video/) - How to integrate a custom audio or video source in to your app using Video SDK.
 
 ## Prerequisites

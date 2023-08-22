@@ -284,14 +284,10 @@ void CallQuality::setupVideoSDKEngine()
 	// Pass an object of agoraEventHandler class to receive callbacks.
 	//HWND agoraEventHandler = AgoraEventStrategy->getMsgEventHandler();
 	context.eventHandler = AgoraEventStrategy.get();
-
 	// Set channel profile in the engine to the CHANNEL_PROFILE_LIVE_BROADCASTING.
 	context.channelProfile = CHANNEL_PROFILE_LIVE_BROADCASTING;
 	// Create log file to check the status
-	tinyxml2::XMLNode* root = AgoraManager::getConfigXMLRoot(AgoraManager::config_file);
-
-	tinyxml2::XMLElement* userNmaeElement = root->FirstChildElement("user_name");
-	std::string user_name = userNmaeElement && userNmaeElement->GetText() ? userNmaeElement->GetText() : "";
+	std::string user_name = AgoraManager::config["user_name"].asString();
 	std::string file_path = "C:\\Users\\"+ user_name + "\\AppData\\Local\\Agora\\AgoraImplementation\\agorasdk.log";
 	context.logConfig.filePath = file_path.c_str();
 	context.logConfig.fileSizeInKB = 256;

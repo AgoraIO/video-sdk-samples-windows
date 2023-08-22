@@ -117,7 +117,7 @@
     </Link>
     <Lib>
       <AdditionalLibraryDirectories>$(SolutionDir)sdk\x86_64;..\vcpkg\installed\x64-windows\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>tinyxml2.lib</AdditionalDependencies>
+      <AdditionalDependencies>jsoncpp.lib</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
