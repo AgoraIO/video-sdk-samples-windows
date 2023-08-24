@@ -10,7 +10,6 @@
 
 #include "AgoraBase.h"
 #include "AgoraRefPtr.h"
-
 namespace agora {
 namespace media {
 namespace base {
@@ -165,7 +164,7 @@ class IRecordingDeviceSource : public RefCountInterface {
    * - 0: Success.
    * - < 0: Failure.
    */
-    virtual int registerAudioFrameObserver(media::base::IAudioFrameObserver* observer) = 0;
+    virtual int registerAudioFrameObserver(media::IAudioPcmFrameSink* observer) = 0;
 
   /**
    * Releases the registered IAudioFrameObserver object.
@@ -175,7 +174,7 @@ class IRecordingDeviceSource : public RefCountInterface {
    * - 0: Success.
    * - < 0: Failure.
    */
-    virtual int unregisterAudioFrameObserver(media::base::IAudioFrameObserver* observer) = 0;
+    virtual int unregisterAudioFrameObserver(media::IAudioPcmFrameSink* observer) = 0;
 
   /**
    * Set parameter to object loopback device;
@@ -322,6 +321,18 @@ public:
    * - < 0: Failure.
    */
   virtual int changeAudioRouting(AudioRoute route) = 0;
+  /**
+   * Changes the speaker status on/off.
+   *
+   * @note
+   * This method applies to Android and iOS only.
+   *
+   * @param enable on/off
+   * @return
+   * - 0: Success.
+   * - < 0: Failure.
+   */
+  virtual int setAudioRoutingSpeakerOn(bool enable) = 0;
   /**
    * Gets the current audio routing.
    *
@@ -541,6 +552,8 @@ public:
    * - < 0: Failure.
    */
   virtual int unregisterObserver(IAudioDeviceManagerObserver* observer) = 0;
+
+  virtual int setupAudioAttributeContext(void* audioAttr) = 0;
 
 protected:
   ~INGAudioDeviceManager() {}

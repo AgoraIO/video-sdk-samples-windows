@@ -124,7 +124,8 @@ void CustomAudioVideoSource::createvideoCanvasAndJoin()
 	}
     if (isCustomAudioSource){
         // Eanble external audio source
-        mediaEngine->setExternalAudioSource(true, SAMPLE_RATE, SAMPLE_NUM_OF_CHANNEL, 1, false, true);
+        //mediaEngine->setExternalAudioSource(true, SAMPLE_RATE, SAMPLE_NUM_OF_CHANNEL, 1, false, true);  --- old sdk 
+        mediaEngine->setExternalAudioSource(true, SAMPLE_RATE, SAMPLE_NUM_OF_CHANNEL, false, true);
     }
     // Enable the microphone to create the local audio stream.
 	agoraEngine->enableAudio();
@@ -267,7 +268,8 @@ void CustomAudioVideoSource::disableExternalAudioSource()
     {
         audioFrameThread.join(); // Wait for thread to finish
     }
-    mediaEngine->setExternalAudioSource(false, SAMPLE_RATE, SAMPLE_NUM_OF_CHANNEL, 1, false, false);
+    //mediaEngine->setExternalAudioSource(false, SAMPLE_RATE, SAMPLE_NUM_OF_CHANNEL, 1, false, false); --- old SDK
+    mediaEngine->setExternalAudioSource(false, SAMPLE_RATE, SAMPLE_NUM_OF_CHANNEL, false, false);
 
     // Set window text to  "Play External Audio"
    SetWindowTextW(externalAudioBtn,L"Play External Audio");
@@ -319,7 +321,8 @@ void CustomAudioVideoSource::playExternalAudio(IRtcEngine* agoraEngine)
             std::memcpy(audioFrameBuffer.get(), buffer.data(), buffer.size());
             if (agoraEngine && mediaEngine)
             {
-                mediaEngine->pushAudioFrame(MEDIA_SOURCE_TYPE::AUDIO_PLAYOUT_SOURCE, &audioFrame);
+                //mediaEngine->pushAudioFrame(MEDIA_SOURCE_TYPE::AUDIO_PLAYOUT_SOURCE, &audioFrame); --- old SDK
+                mediaEngine->pushAudioFrame(&audioFrame);
             }
             else
             {
