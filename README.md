@@ -29,7 +29,8 @@ To run a sample project in this repository, take the following steps:
 3. Replace the `<root>/agora_manager/SDK` with the latest Agora Video SDK, you downloaded and unzipped to a local folder.
 4. Create a folder at your solution directory (`<root>/agora_manager`) named `<selected solution platform(x64 or x86)>/<selected solution Configuration Mode(Debug or Release)>` like for this sample create a nested folder (`x64/Debug`).To achieve this, first create a folder named `x64`, and then within that folder, create another folder named `Debug`.
 5. Copy the contents of `<root>/agora_manager/SDK` to  `<root>/agora_manager/x64/Debug`.
-6. #Install the required third party liberaries through vcpkg:#
+6. **Install the required third party liberaries through vcpkg:**
+
 	Follow the link [vcpkg](https://vcpkg.io/en/getting-started) to install required library. Please note we need to install x64-windows version of librarry, as this sample is 64-bit version of Windows. For example in a given sample to read config.json, `jsoncpp` lib is used. in nutshell below steps required:
 	 ```bash
 	 1. Go to your project Directory :  cd <root>
@@ -38,7 +39,8 @@ To run a sample project in this repository, take the following steps:
 	 3. .\vcpkg integrate install     -- execute once during vcpkg setup 
 	 4. .\vcpkg install jsoncpp:x64-windows   -- execute specific command for each specific liberary (project specific third parties installation vcpkg commands given below)
 	 ```
-	#Project specific third parties library requirement :#
+	**Project specific third parties library requirement :**
+	
 	```bash
 	-- for base project and SDK quickstart(agora_manager and get_started):
 		.\vcpkg install jsoncpp:x64-windows
