@@ -1,7 +1,0 @@
-Package: opencv
-Feature: ffmpeg
-Depends: opencv4
-Architecture: x64-windows
-Multi-Arch: same
-Description: ffmpeg support for opencv
-Status: install ok installed

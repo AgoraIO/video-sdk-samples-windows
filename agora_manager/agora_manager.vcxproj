@@ -117,8 +117,11 @@
     </Link>
     <Lib>
       <AdditionalLibraryDirectories>$(SolutionDir)sdk\x86_64;..\vcpkg\installed\x64-windows\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>jsoncpp.lib</AdditionalDependencies>
+      <AdditionalDependencies>libcurl.lib;jsoncpp.lib</AdditionalDependencies>
     </Lib>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
