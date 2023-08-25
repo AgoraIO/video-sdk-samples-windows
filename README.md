@@ -31,13 +31,13 @@ To run a sample project in this repository, take the following steps:
 5. Copy the contents of `<root>/agora_manager/SDK` to  `<root>/agora_manager/x64/Debug`.
 6. *Install the required third party liberaries through vcpkg:*
 	Follow the link [vcpkg](https://vcpkg.io/en/getting-started) to install required library. Please note we need to install x64-windows version of librarry, as this sample is 64-bit version of Windows. For example in a given sample to read config.json, `jsoncpp` lib is used. in nutshell below steps required:
- ```bash
- 1. Go to your project Directory :  cd <root>
- 1. git clone https://github.com/Microsoft/vcpkg.git  -- execute once during vcpkg setup
- 2. .\vcpkg\bootstrap-vcpkg.bat   -- execute once during vcpkg setup
- 3. .\vcpkg integrate install     -- execute once during vcpkg setup 
- 4. .\vcpkg install jsoncpp:x64-windows   -- execute specific command for each specific liberary (project specific third parties commands given below)
- ```
+	 ```bash
+	 1. Go to your project Directory :  cd <root>
+	 1. git clone https://github.com/Microsoft/vcpkg.git  -- execute once during vcpkg setup
+	 2. .\vcpkg\bootstrap-vcpkg.bat   -- execute once during vcpkg setup
+	 3. .\vcpkg integrate install     -- execute once during vcpkg setup 
+	 4. .\vcpkg install jsoncpp:x64-windows   -- execute specific command for each specific liberary (project specific third parties commands given below)
+	 ```
 *Project specific third parties library requirement :
 	```bash
 	-- for base project and SDK quickstart(agora_manager and get_started):
@@ -47,8 +47,8 @@ To run a sample project in this repository, take the following steps:
 	-- for Custom video and audio surces:
 		.\vcpkg install opencv:x64-windows
 	```
-4. Select the project you want to run in solution explorer, right click and `set as startup project'
-5. Open `<root>/config.json` and put the input as per your selected project like appId, channel, rtcToken, tokenExpiryTime, etc.
-6. Build and run the project.
-7. Refer to the README file in the selected project folder and follow the link to view complete project documentation for your product of interest.
+7. Select the project you want to run in solution explorer, right click and `set as startup project'
+8. Open `<root>/config.json` and put the input as per your selected project like appId, channel, rtcToken, tokenExpiryTime, etc.
+9. Build and run the project.
+10. Refer to the README file in the selected project folder and follow the link to view complete project documentation for your product of interest.
 
