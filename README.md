@@ -35,19 +35,19 @@ To run a sample project in this repository, take the following steps:
 	 ```bash
 	 1. Open CMD and navigate to your project Directory <root>:
 	 1. git clone https://github.com/Microsoft/vcpkg.git  -- execute once during vcpkg setup
-	 2. .\vcpkg\bootstrap-vcpkg.bat   -- execute once during vcpkg setup
-	 3. .\vcpkg integrate install     -- execute once during vcpkg setup 
-	 4. .\vcpkg install jsoncpp:x64-windows   -- execute specific command for each specific liberary (project specific third parties installation vcpkg commands given below)
+	 2. cd vcpkg
+	 3. .\bootstrap-vcpkg.bat   -- execute once during vcpkg setup
+	 4. .\vcpkg.exe install jsoncpp:x64-windows  -- execute specific command for each specific liberary (project specific third parties installation vcpkg commands given below)
 	 ```
 	**Project specific third parties library requirement :**
 	
 	```bash
 	-- for base project and SDK quickstart(agora_manager and get_started):
-		.\vcpkg install jsoncpp:x64-windows
-		.\vcpkg install curl:x64-windows
+		.\vcpkg.exe install jsoncpp:x64-windows
+		.\vcpkg.exe install curl:x64-windows
 	-- for Call quality best practice: None
 	-- for Custom video and audio surces:
-		.\vcpkg install opencv:x64-windows
+		.\vcpkg.exe install opencv:x64-windows
 	```
 7. Select the project you want to run in solution explorer, right click and `set as startup project'
 8. Open `<root>/config.json` and put the input as per your selected project like appId, channel, rtcToken, tokenExpiryTime, etc.
