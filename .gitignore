@@ -2,7 +2,7 @@
 [Dd]ebug/
 [Rr]elease/
 
-# Exclude vcpkg 
+# Exclude vcpkg directory if included 
 [Vv]cpkg/
 
 # Exclude binaries 
