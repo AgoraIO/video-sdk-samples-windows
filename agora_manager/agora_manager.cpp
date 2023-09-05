@@ -166,20 +166,6 @@ void AgoraManager::leave()
 	//token = "";
 }
 
-void AgoraManager::leave()
-{
-	// Leave the channel to end the call.
-	agoraEngine->leaveChannel();
-	// Stop the local video preview.
-	agoraEngine->stopPreview();
-	// Disable the local video capturer.
-	agoraEngine->disableVideo();
-	// Disable the local microphone.
-	agoraEngine->disableAudio();
-
-	//token = "";
-}
-
 void AgoraManager::signalStop() {
 	shouldStop = true;
 }
