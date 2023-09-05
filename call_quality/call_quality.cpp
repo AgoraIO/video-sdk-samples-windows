@@ -147,12 +147,12 @@ void CallQuality::handleGuiAction(int commandId) {
 	switch (commandId) {
 	case 4:						// For Echo Test
 		// Handle echo test button click
-		OnBnClickedEchoTest();
+		EchoTest();
 		break;
 		// ... other buttons can be handled here ...
 	case 7:						//For Video Quality
 		// Handle video quality button click
-		OnBnClickedVideoQuality();
+		VideoQuality();
 	default:
 		// Delegate handling to the base class for unknown button commands
 		AgoraManager::handleGuiAction(commandId);
@@ -225,7 +225,7 @@ void CallQuality::createSpecificGui(HWND& guiWindowReference)
 }
 
 
-void CallQuality::OnBnClickedEchoTest()
+void CallQuality::EchoTest()
 {
 	if (!isEchoTestRunning)
 	{
@@ -337,7 +337,7 @@ void CallQuality::startProbeTest()
 }
 
 
-void CallQuality::OnBnClickedVideoQuality()
+void CallQuality::VideoQuality()
 {
 	highQuality = !highQuality;
 	if (highQuality)

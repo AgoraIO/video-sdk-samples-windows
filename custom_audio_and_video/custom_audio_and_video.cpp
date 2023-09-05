@@ -38,6 +38,7 @@ void CustomAudioVideoSource::createSpecificGui(HWND& guiWindowReference)
     externalAudioBtn = CreateWindow(L"BUTTON", L"Play External Audio", WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,
         0, 0, btnWidth, btnHeight, parentWindow, (HMENU)ID_EXTERNAL_AUDIO_BTN, NULL, NULL);
     MoveWindow(externalAudioBtn, width - btnWidth - btnMargin, btnMargin, btnWidth, btnHeight, TRUE);
+    EnableWindow(externalAudioBtn, FALSE);
 }
 
 
@@ -184,6 +185,8 @@ void CustomAudioVideoSource::join()
     }
     else
     {
+        EnableWindow(externalAudioBtn, TRUE);
+
         if (isCustomVideoSource)
         {
             captureExternalVideo = true;
@@ -248,6 +251,7 @@ void CustomAudioVideoSource::leave()
         disableExternalAudioSource();
     }
 
+    EnableWindow(externalAudioBtn, FALSE);
 }
 
 

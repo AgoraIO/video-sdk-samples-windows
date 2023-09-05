@@ -163,7 +163,21 @@ void AgoraManager::leave()
 	// Disable the local microphone.
 	agoraEngine->disableAudio();
 
-	token = "";
+	//token = "";
+}
+
+void AgoraManager::leave()
+{
+	// Leave the channel to end the call.
+	agoraEngine->leaveChannel();
+	// Stop the local video preview.
+	agoraEngine->stopPreview();
+	// Disable the local video capturer.
+	agoraEngine->disableVideo();
+	// Disable the local microphone.
+	agoraEngine->disableAudio();
+
+	//token = "";
 }
 
 void AgoraManager::signalStop() {
@@ -221,7 +235,6 @@ void AgoraManager::handleGuiUserMsg(int msgId, WPARAM wparam, LPARAM lparam)
 		break;
 	default:
 		// Handle unknown GUI User Message
-		
 		break;
 	}
 }
