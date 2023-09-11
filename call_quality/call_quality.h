@@ -31,8 +31,8 @@ public:
 	virtual void handleGuiAction(int commandId) override;
 
 	void updateNetworkStatus(int quality);
-	void OnBnClickedEchoTest();
-	void OnBnClickedVideoQuality();
+	void EchoTest();
+	void VideoQuality();
 	void startProbeTest();
 
 

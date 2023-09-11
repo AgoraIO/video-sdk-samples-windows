@@ -231,7 +231,9 @@ struct RtmpConnectionConfiguration {
   RtmpStreamingAudioConfiguration audioConfig;
   RtmpStreamingVideoConfiguration videoConfig;
   bool enableWriteFlvFile;
-  RtmpConnectionConfiguration() : enableWriteFlvFile(false) {}
+  bool audioOnly;
+  RtmpConnectionConfiguration() : enableWriteFlvFile(false), 
+                                  audioOnly(false) {}
 };
 
 /**

@@ -366,6 +366,10 @@ struct RemoteVideoTrackStats {
     */
   int delay;
   /**
+   * End-to-end delay from video capturer to video renderer. Hardware capture or render delay is excluded.
+   */
+  int e2eDelay;
+  /**
    * The width (pixel) of the remote video track.
    */
   int width;
@@ -403,6 +407,10 @@ struct RemoteVideoTrackStats {
    The total video freeze time as a percentage (%) of the total time when the video is available.
    */
   int frozenRate;
+  /**
+   * The number of video bytes received.
+   */
+  uint32_t received_bytes;
   /**
    The total number of decoded video frames.
    */
@@ -442,7 +450,7 @@ struct RemoteVideoTrackStats {
   RemoteVideoTrackStats() : uid(0), delay(0), width(0), height(0),
                             receivedBitrate(0), decoderOutputFrameRate(0), rendererOutputFrameRate(0),
                             frameLossRate(0), packetLossRate(0), rxStreamType(VIDEO_STREAM_HIGH),
-                            totalFrozenTime(0), frozenRate(0), totalDecodedFrames(0), avSyncTimeMs(0),
+                            totalFrozenTime(0), frozenRate(0), received_bytes(0), totalDecodedFrames(0), avSyncTimeMs(0),
                             downlink_process_time_ms(0), frame_render_delay_ms(0), totalActiveTime(0),
                             publishDuration(0), vqa_mos(0), vqa_avg_cost_ms(0) {}
 };

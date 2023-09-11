@@ -8,40 +8,21 @@
 
 void CustomAudioVideoSource::setCutommSourceInput()
 {
-    tinyxml2::XMLNode* root = AgoraManager::getConfigXMLRoot(AgoraManager::config_file);
-
-    tinyxml2::XMLElement* customVideoElement = root->FirstChildElement("isCustomVideoSource");
-    if (customVideoElement && customVideoElement->GetText()) {
-        std::string text = customVideoElement->GetText();
-
-        // Compare the text to "true" (ignoring case)
-        // This assumes that the value can only be "true" or "false"
-        isCustomVideoSource = (text == "true" || text == "True" || text == "TRUE");
-        if (isCustomVideoSource)
-        {
-            tinyxml2::XMLElement* customVideoPathElement = root->FirstChildElement("customVideoPath");
-            customVideoPath = customVideoPathElement && customVideoPathElement->GetText() ? customVideoPathElement->GetText() : "";
-        }
+   isCustomVideoSource = AgoraManager::config["isCustomVideoSource"].asBool();
+    if (isCustomVideoSource)
+    {
+        customVideoPath = AgoraManager::config["customVideoPath"].asString();
     }
 
-    tinyxml2::XMLElement* customAudeoElement = root->FirstChildElement("isCustomAudioSource");
-    if (customAudeoElement && customAudeoElement->GetText()) {
-        std::string text = customAudeoElement->GetText();
-
-        // Compare the text to "true" (ignoring case)
-        // This assumes that the value can only be "true" or "false"
-        isCustomAudioSource = (text == "true" || text == "True" || text == "TRUE");
-        if (isCustomAudioSource)
-        {
-            tinyxml2::XMLElement* customAudioPathElement = root->FirstChildElement("customAudioPath");
-            customAudioPath = customAudioPathElement && customAudioPathElement->GetText() ? customAudioPathElement->GetText() : "";
-        }
+    isCustomAudioSource = AgoraManager::config["isCustomAudioSource"].asBool();
+    if (isCustomAudioSource)
+    {
+        customAudioPath = AgoraManager::config["customAudioPath"].asString();
     }
 }
 
 void CustomAudioVideoSource::createSpecificGui(HWND& guiWindowReference)
 {
-
     HWND parentWindow = guiWindowReference;
     RECT rect;
     GetClientRect(parentWindow, &rect);
@@ -57,6 +38,7 @@ void CustomAudioVideoSource::createSpecificGui(HWND& guiWindowReference)
     externalAudioBtn = CreateWindow(L"BUTTON", L"Play External Audio", WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,
         0, 0, btnWidth, btnHeight, parentWindow, (HMENU)ID_EXTERNAL_AUDIO_BTN, NULL, NULL);
     MoveWindow(externalAudioBtn, width - btnWidth - btnMargin, btnMargin, btnWidth, btnHeight, TRUE);
+    EnableWindow(externalAudioBtn, FALSE);
 }
 
 
@@ -105,8 +87,6 @@ void CustomAudioVideoSource::OnBnClickedExternalAudioButton()
     }
 }
 
-
-
 void CustomAudioVideoSource::Run()
 {
 	SetupGui();
@@ -140,12 +120,13 @@ void CustomAudioVideoSource::createvideoCanvasAndJoin()
 	// Check if the engine is successfully initialized.
 	if (agoraEngine == NULL)
 	{
-		MessageBox(NULL, L"Engine is not initialized", L"Notification", NULL);
-		return;
+        MessageBox(NULL, L"Agora SDK Engine is not initialized", L"Error!", MB_ICONEXCLAMATION | MB_OK);
+        return;
 	}
     if (isCustomAudioSource){
         // Eanble external audio source
-        mediaEngine->setExternalAudioSource(true, SAMPLE_RATE, SAMPLE_NUM_OF_CHANNEL, 1, false, true);
+        //mediaEngine->setExternalAudioSource(true, SAMPLE_RATE, SAMPLE_NUM_OF_CHANNEL, 1, false, true);  --- old sdk 
+        mediaEngine->setExternalAudioSource(true, SAMPLE_RATE, SAMPLE_NUM_OF_CHANNEL, false, true);
     }
     // Enable the microphone to create the local audio stream.
 	agoraEngine->enableAudio();
@@ -184,12 +165,28 @@ void CustomAudioVideoSource::join()
         // Enable custom audio local playback 
         agoraEngine->enableCustomAudioLocalPlayback(0, true);
     }
+    expireTime = config["tokenExpiryTime"].asInt() ? config["tokenExpiryTime"].asInt() : 0;
+    serverUrl = config["tokenUrl"].asString();
+
+    if (token == "")
+    {
+        // Fetch new token 
+        token = fetchToken(serverUrl, channelName, tokenRole, uid, expireTime);
+        if (token == "")
+        {
+            MessageBox(NULL, L"Invalid Token : token server fetch failed.", L"Error!", MB_ICONEXCLAMATION | MB_OK);
+            return;
+        }
+    }
+
     if (0 != agoraEngine->joinChannel(token.c_str(), channelName.c_str(), 0, option))
     {
-        MessageBox(NULL, L"CustomAudioVideoSource::joinChannel() error", L"Notification", NULL);
+        MessageBox(NULL, L"CustomAudioVideoSource::joinChannel() error.", L"Error!", MB_ICONEXCLAMATION | MB_OK);
     }
     else
     {
+        EnableWindow(externalAudioBtn, TRUE);
+
         if (isCustomVideoSource)
         {
             captureExternalVideo = true;
@@ -204,7 +201,7 @@ void CustomAudioVideoSource::playExternalVideo(IRtcEngine* agoraEngine)
     cv::VideoCapture cap(customVideoPath);
     if (!cap.isOpened())
     {
-        MessageBox(NULL, L"Error: Could not open the video file.", L"error", NULL);
+        MessageBox(NULL, L"Error: Could not open the video file.", L"Error", NULL);
         return;
     }
     
@@ -254,6 +251,7 @@ void CustomAudioVideoSource::leave()
         disableExternalAudioSource();
     }
 
+    EnableWindow(externalAudioBtn, FALSE);
 }
 
 
@@ -274,7 +272,8 @@ void CustomAudioVideoSource::disableExternalAudioSource()
     {
         audioFrameThread.join(); // Wait for thread to finish
     }
-    mediaEngine->setExternalAudioSource(false, SAMPLE_RATE, SAMPLE_NUM_OF_CHANNEL, 1, false, false);
+    //mediaEngine->setExternalAudioSource(false, SAMPLE_RATE, SAMPLE_NUM_OF_CHANNEL, 1, false, false); --- old SDK
+    mediaEngine->setExternalAudioSource(false, SAMPLE_RATE, SAMPLE_NUM_OF_CHANNEL, false, false);
 
     // Set window text to  "Play External Audio"
    SetWindowTextW(externalAudioBtn,L"Play External Audio");
@@ -285,7 +284,7 @@ void CustomAudioVideoSource::playExternalAudio(IRtcEngine* agoraEngine)
     std::ifstream stream(customAudioPath, std::ios::binary);
     if (!stream.is_open())
     {
-        MessageBox(NULL, L"Error: Could not open the audio file.", L"error", NULL);
+        MessageBox(NULL, L"Error: Could not open the audio file.", L"Error", NULL);
         return;
     }
 
@@ -326,7 +325,8 @@ void CustomAudioVideoSource::playExternalAudio(IRtcEngine* agoraEngine)
             std::memcpy(audioFrameBuffer.get(), buffer.data(), buffer.size());
             if (agoraEngine && mediaEngine)
             {
-                mediaEngine->pushAudioFrame(MEDIA_SOURCE_TYPE::AUDIO_PLAYOUT_SOURCE, &audioFrame);
+                //mediaEngine->pushAudioFrame(MEDIA_SOURCE_TYPE::AUDIO_PLAYOUT_SOURCE, &audioFrame); --- old SDK
+                mediaEngine->pushAudioFrame(&audioFrame);
             }
             else
             {

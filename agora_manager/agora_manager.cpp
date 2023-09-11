@@ -3,10 +3,13 @@
 
 
 #include <iostream>
+#include <fstream>
 #include <agora_manager.h>
+#include <curl/curl.h>
 
-const std::string AgoraManager::config_file = "..//configuration.xml";
-std::unique_ptr<tinyxml2::XMLDocument> AgoraManager::doc = std::make_unique<tinyxml2::XMLDocument>();
+
+const std::string AgoraManager::config_json_file = "..//config.json";
+Json::Value AgoraManager::config;
 
 void AgoraManagerEventHandler::onUserJoined(uid_t uid, int elapsed)
 {
@@ -33,6 +36,17 @@ void AgoraManagerEventHandler::onLeaveChannel(const RtcStats& stats)
 {
 	// Occurs when you leave a channel.
 	MessageBox(NULL, L"You left the channel", L"Notification", NULL);
+}
+
+void AgoraManagerEventHandler::onTokenPrivilegeWillExpire(const char* token)
+{
+	// Occurs on requesting new token
+	MessageBox(NULL, L"Token is about to expire.", L"Notification", NULL);
+	HWND MsgEventHandler = getMsgEventHandler();
+	if (MsgEventHandler)
+	{
+		::PostMessage(MsgEventHandler, WM_MSGID(EID_TOKEN_PRIVILEGE_WILL_EXPIRE), (WPARAM)token, NULL);
+	}
 }
 
 void AgoraManager::setupVideoSDKEngine()
@@ -89,7 +103,7 @@ void AgoraManager::createvideoCanvasAndJoin()
 	// Check if the engine is successfully initialized.
 	if (agoraEngine == NULL)
 	{
-		MessageBox(NULL, L"Engine is not initialized", L"Notification", NULL);
+		MessageBox(NULL, L"Agora SDK Engine is not initialized", L"Error!", MB_ICONEXCLAMATION | MB_OK);
 		return;
 	}
 	// Enable the microphone to create the local audio stream.
@@ -116,10 +130,23 @@ void AgoraManager::createvideoCanvasAndJoin()
 
 void AgoraManager::join()
 {
+	expireTime = config["tokenExpiryTime"].asInt() ? config["tokenExpiryTime"].asInt() : 0;
+	serverUrl = config["tokenUrl"].asString();
+
+	if (token == "")
+	{
+		// Fetch new token 
+		token = fetchToken(serverUrl, channelName, tokenRole, uid, expireTime);
+		if (token == "")
+		{
+			MessageBox(NULL, L"Invalid Token : token server fetch failed.", L"Error!", MB_ICONEXCLAMATION | MB_OK);
+			return;
+		}
+	}
 
 	if (0 != agoraEngine->joinChannel(token.c_str(), channelName.c_str(), 0, NULL))
 	{
-		MessageBox(NULL, L"AgoraManager::joinChannel() error", L"Notification", NULL);
+		MessageBox(NULL, L"AgoraManager::joinChannel() error.", L"Error!", MB_ICONEXCLAMATION | MB_OK);
 		return;
 
 	}
@@ -135,8 +162,9 @@ void AgoraManager::leave()
 	agoraEngine->disableVideo();
 	// Disable the local microphone.
 	agoraEngine->disableAudio();
-}
 
+	//token = "";
+}
 
 void AgoraManager::signalStop() {
 	shouldStop = true;
@@ -188,9 +216,11 @@ void AgoraManager::handleGuiUserMsg(int msgId, WPARAM wparam, LPARAM lparam)
 			OnEIDUserJoined(wparam, lparam);
 		}
 		break;
+	case EID_TOKEN_PRIVILEGE_WILL_EXPIRE:
+		OnEIDTokenPrivilegeWillExpire(wparam, lparam);
+		break;
 	default:
 		// Handle unknown GUI User Message
-		
 		break;
 	}
 }
@@ -210,28 +240,107 @@ void AgoraManager::Run()
 	gui->ProcessMessages();
 }
 
-tinyxml2::XMLNode* AgoraManager::getConfigXMLRoot(const std::string config_file)
+void AgoraManager::buildConfigJsonMap(const std::string config_json_file)
 {
-	
-	if (doc->LoadFile(config_file.c_str()) != tinyxml2::XML_SUCCESS)
-	{
-		// Handle the error...
-		return nullptr;
+	std::ifstream configFile(config_json_file, std::ifstream::binary);
+	if (!configFile.is_open()) {
+		MessageBox(NULL, L"Failed to open config.json.", L"Error!", MB_ICONEXCLAMATION | MB_OK);
+		return ;
 	}
 
-	tinyxml2::XMLNode* root = doc->FirstChild();
-	
-	if (!root)
-	{
-		// Handle the error...
-		return nullptr;
+	Json::CharReaderBuilder readerBuilder;
+	std::string errors;
+
+	if (!Json::parseFromStream(readerBuilder, configFile, &config, &errors)) {
+		MessageBox(NULL, L"Failed to parse config.json.", L"Error!", MB_ICONEXCLAMATION | MB_OK);
+		OutputDebugStringA(("JSON Parsing Error: " + errors + "\n").c_str());
+		return ;
 	}
-	return root;
 }
 
 void AgoraManager::createSpecificGui(HWND& guiWindowReference)
 {
 	//do_nothing
+}
+
+
+LRESULT AgoraManager::OnEIDTokenPrivilegeWillExpire(WPARAM wParam, LPARAM lParam)
+{
+	token = fetchToken(serverUrl, channelName, tokenRole, uid, expireTime);
+	HWND hwndParent = GetParent(gui->getGuiWindowReference());
+	if (token == "")
+	{
+		MessageBox(NULL, L"Invalid Token : token server fetch failed.", L"Error!", MB_ICONEXCLAMATION | MB_OK);
+		::PostMessage(hwndParent, WM_MSGID(EID_TOKEN_PRIVILEGE_WILL_EXPIRE), TRUE, 0);
+		return 0;
+	}
+	// Renew Agora engine token by the new one
+	if (0 == agoraEngine->renewToken(token.c_str()))
+	{
+
+		MessageBox(NULL, L"Token Renewed!!", L"Notification", NULL);
+	}
+
+	::PostMessage(hwndParent, WM_MSGID(EID_TOKEN_PRIVILEGE_WILL_EXPIRE), TRUE, 0);
+	return 0;
+}
+
+// Callback function writes data to a std::string
+size_t AgoraManager::WriteCallback(void* contents, size_t size, size_t nmemb, std::string* s) {
+	size_t newLength = size * nmemb;
+	try {
+		s->append((char*)contents, newLength);
+	}
+	catch (std::bad_alloc& e) {
+		// handle memory problem
+		return 0;
+	}
+	return newLength;
+}
+
+std::string AgoraManager::fetchToken(const std::string& serverUrl, const std::string& channelName, int tokenRole, size_t uid, int expireTime) {
+	CURL* curl = nullptr;
+	CURLcode res = CURLcode::CURLE_OK;
+	std::string readBuffer = "";
+	curl_global_init(CURL_GLOBAL_DEFAULT);
+	curl = curl_easy_init();
+
+	if (!curl) {
+		fprintf(stderr, "curl_easy_init() failed, could not initialize libcurl\n");
+
+	}
+	else {
+		std::string rest_url = serverUrl + "/rtc/" + channelName + "/" + std::to_string(tokenRole) + "/uid/" + std::to_string(uid) + "/?expiry=" + std::to_string(expireTime);
+
+		curl_easy_setopt(curl, CURLOPT_URL, rest_url.c_str());
+		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
+		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
+		res = curl_easy_perform(curl);
+		if (res != CURLE_OK) {
+			fprintf(stderr, "curl_easy_perform() failed: %s\n", curl_easy_strerror(res));
+		}
+		else {
+			std::string tokenKey = "\"rtcToken\":\"";
+			size_t startPos = readBuffer.find(tokenKey);
+			if (startPos != std::string::npos) {
+				startPos += tokenKey.size(); // skip past the key to the value
+				size_t endPos = readBuffer.find('\"', startPos); // find the next quote after the value
+				if (endPos != std::string::npos) {
+					readBuffer = readBuffer.substr(startPos, endPos - startPos);
+				}
+			}
+			else
+			{
+				readBuffer = "";  // making buffer empty to return as empty token
+			}
+		}
+
+		// Always cleanup
+		curl_easy_cleanup(curl);
+	}
+	curl_global_cleanup();
+
+	return readBuffer;
 }
 
 

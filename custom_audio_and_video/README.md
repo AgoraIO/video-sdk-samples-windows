@@ -7,12 +7,13 @@ By default, Video SDK uses the basic audio and video modules on the device your 
 - You need to process the captured audio or video with a pre-processing library for audio or image enhancement.
 - You need flexible device resource allocation to avoid conflicts with other services.
 
-- ## Understand the code
 
-For context on this sample, and a full explanation of the essential code snippets used in this project, read the following guides:
+## Understand the code
 
-[Agora's full documentation for custom audio and video sources](https://docs.agora.io/en/video-calling/develop/custom-video-and-audio?platform=windows)
+For context on this sample, and a full explanation of the essential code snippets used in this project, read [Call quality best practice](https://docs-beta.agora.io/en/video-calling/develop/custom-video-and-audio)
+
 
 ## How to run this project
 
-To see how to run this project, refer to [README](../README.md) in the root folder or one of the complete product guides.
+To see how to run this project, read the instructions in the main [README](../README.md) or [SDK quickstart](https://docs-beta.agora.io/en/video-calling/get-started/get-started-sdk).
+

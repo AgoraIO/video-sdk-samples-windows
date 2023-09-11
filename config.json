@@ -1,0 +1,27 @@
+{
+    "uid":"1",
+    "appId":"",
+    "channel":"demo_test",
+    "rtcToken":"",
+    "proxyUrl":"http://localhost:8080/",
+    "tokenUrl":"",
+    "tokenExpiryTime": 60,
+    "encryptionMode": 1,
+    "salt": "",
+    "cipherKey": "",
+    "presenceTimeout": 300,
+    "logUpload": false,
+    "logFilter": {
+        "error": true,
+        "warn": true,
+        "info": true,
+        "track": true,
+        "debug": false
+    },
+    "cloudProxy": true,
+    "useStringUserId": false,	
+    "isCustomVideoSource": true,
+    "isCustomAudioSource":true,
+    "customVideoPath":"..\\custom_audio_and_video\\sample.mp4",
+    "customAudioPath":"..\\custom_audio_and_video\\sample_audio.wav"
+}

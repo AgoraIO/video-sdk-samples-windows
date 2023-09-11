@@ -1,5 +1,28 @@
+# Exclude Debug and Release directories
+[Dd]ebug/
+[Rr]elease/
+
+# Exclude vcpkg directory if included 
+[Vv]cpkg/
+
+# Exclude binaries 
+*.dll
+*.exe
+*.lib
+*.idb
+
+# Exclude temporary build files
+*.FileListAbsolute.txt
+*.Build.CppClean.log
+*.exe.recipe
+vc143.idb
+
+# Exclude Visual Studio cache directory
 .vs/
+
+" Exclude IntelliSense Precompiled Header
 *.ipch
+
 # Ignore Visual Studio generated files
 *.ilk
 *.pdb
@@ -8,3 +31,7 @@
 # Ignore log files
 *.log
 *.tlog
+
+# ignore changes done in config.json
+config.json
+
