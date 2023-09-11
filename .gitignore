@@ -34,3 +34,6 @@ vc143.idb
 # Ignore log files
 *.log
 *.tlog
+
+config.json
+

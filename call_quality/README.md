@@ -20,13 +20,9 @@ This sample project shows you how to use Video SDK features to account for these
 
 ## Understand the code
 
-For context on this sample, and a full explanation of the essential code snippets used in this project, read the following guides:
+For context on this sample, and a full explanation of the essential code snippets used in this project, read [Call quality best practice](https://docs-beta.agora.io/en/video-calling/develop/ensure-channel-quality)
 
-* [Call quality best practice for Video calling](https://docs.agora.io/en/video-calling/develop/ensure-channel-quality?platform=windows)
-* [Call quality best practice for Voice calling](https://docs.agora.io/en/voice-calling/develop/ensure-channel-quality?platform=windows)
-* [Call quality best practice for Interactive live Streaming](https://docs.agora.io/en/interactive-live-streaming/develop/ensure-channel-quality?platform=windows)
-* [Call quality best practice for Broadcast streaming](https://docs.agora.io/en/broadcast-streaming/develop/ensure-channel-quality?platform=windows)
 
 ## How to run this project
 
-To see how to run this project, refer to [README](../README.md) in the root folder or one of the complete product guides.
+To see how to run this project, read the instructions in the main [README](../README.md) or [SDK quickstart](https://docs-beta.agora.io/en/video-calling/get-started/get-started-sdk).
