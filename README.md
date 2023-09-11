@@ -70,9 +70,7 @@ To run a sample project in this repository, take the following steps:
 1. **Build and run the project**
 
    1. In Solution Explorer, right-click the sample you want to run, then click `set as startup project'
-   1. Build and run the project.
-
-      Choose a sample code from the dropdown that you wish to execute.
+   1. Build and run the project. 
 
 ## Contact
 
