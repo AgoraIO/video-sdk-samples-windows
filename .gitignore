@@ -11,9 +11,6 @@
 *.lib
 *.idb
 
-# Exclude user-specific files
-*.vcxproj.user
-
 # Exclude temporary build files
 *.FileListAbsolute.txt
 *.Build.CppClean.log
@@ -35,5 +32,6 @@ vc143.idb
 *.log
 *.tlog
 
+# ignore changes done in config.json
 config.json
 
