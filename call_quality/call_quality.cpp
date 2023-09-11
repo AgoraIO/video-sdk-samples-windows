@@ -286,8 +286,10 @@ void CallQuality::setupVideoSDKEngine()
 	context.eventHandler = AgoraEventStrategy.get();
 	// Set channel profile in the engine to the CHANNEL_PROFILE_LIVE_BROADCASTING.
 	context.channelProfile = CHANNEL_PROFILE_LIVE_BROADCASTING;
+	// Retrieve the user_name from the environment variable to set log file path
+	const char* env_user_name = std::getenv("USERNAME");
+	std::string user_name(env_user_name);
 	// Create log file to check the status
-	std::string user_name = AgoraManager::config["user_name"].asString();
 	std::string file_path = "C:\\Users\\"+ user_name + "\\AppData\\Local\\Agora\\AgoraImplementation\\agorasdk.log";
 	context.logConfig.filePath = file_path.c_str();
 	context.logConfig.fileSizeInKB = 256;

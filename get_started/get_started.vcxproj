@@ -73,6 +73,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>..\vcpkg\installed\x64-windows\include;$(SolutionDir)sdk\high_level_api\include;$(IncludePath)</IncludePath>
     <ExecutablePath>$(ExecutablePath);$(VC_ExecutablePath_x64);$(CommonExecutablePath)</ExecutablePath>
+    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <VcpkgInstalledDir>..\vcpkg\installed</VcpkgInstalledDir>
