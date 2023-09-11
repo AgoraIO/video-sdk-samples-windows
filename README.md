@@ -45,7 +45,12 @@ To run a sample project in this repository, take the following steps:
 1. **Install the required third party libraries**
 
    1. In the command prompt, navigate to `video-sdk-samples-windows`. 
-   1. Install `vcpg`using the following instructions: https://vcpkg.io/en/getting-started.  
+   1. Install `vcpkg`: 
+      ```bash
+      1. git clone https://github.com/Microsoft/vcpkg.git
+      1. cd vcpkg
+      1. .\bootstrap-vcpkg.bat
+      ```  
    1. Install the required packages:
       ```bash
         .\vcpkg.exe install jsoncpp:x64-windows
