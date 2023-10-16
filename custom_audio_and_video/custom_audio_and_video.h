@@ -28,7 +28,7 @@ public:
 
     virtual void createSpecificGui(HWND& guiWindowReference)override;
     virtual void handleGuiAction(int commandId) override;
-    //virtual void handleGuiUserMsg(int msgId, WPARAM wparam, LPARAM lparam) override;
+    virtual void createvideoCanvasAndJoin() override;
     virtual void join()override;
     virtual void leave()override;
     virtual void Run();
@@ -42,13 +42,7 @@ public:
     void OnBnClickedExternalAudioButton();
     void playExternalAudio(IRtcEngine* agoraEngine);
     void disableExternalAudioSource();
-
-
-    virtual void createvideoCanvasAndJoin() override;
-
-   
     
-
 public:
     agora::util::AutoPtr<agora::media::IMediaEngine> mediaEngine;
     bool isCustomAudioSource = false;
