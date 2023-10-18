@@ -1231,7 +1231,7 @@ class IVideoFrameObserver {
      * Read-only mode.
      * 
      * In this mode, you do not modify the video frame. The video frame observer is a renderer.
-     */
+     */+
     PROCESS_MODE_READ_ONLY, // Observer works as a pure renderer and will not modify the original frame.
     /**
      * Read and write mode.
