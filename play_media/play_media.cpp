@@ -49,7 +49,7 @@ void PlayMedia::createSpecificGui(HWND& guiWindowReference)
     int btnHeight = 30;
     int btnMargin = 10;
 
-    // Echo Test Button
+    // Media Button
 	mediaButton = CreateWindow(L"BUTTON", L"Open Media File", WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,
         0, 0, btnWidth, btnHeight, parentWindow, (HMENU)ID_PLAY_MEDIA_BTN, NULL, NULL);
     MoveWindow(mediaButton, width - btnWidth - btnMargin, btnMargin, btnWidth, btnHeight, TRUE);
