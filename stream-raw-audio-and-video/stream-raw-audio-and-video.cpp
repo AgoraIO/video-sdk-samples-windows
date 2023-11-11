@@ -2,11 +2,9 @@
 //
 
 #include "stream-raw-audio-and-video.h"
-
 #define ID_ZOOM_IN_BUTTON 13
 
 bool isZoomed = false;
-
 
 void RawAudioVideoManager::createSpecificGui(HWND& guiWindowReference)
 {
@@ -24,11 +22,11 @@ void RawAudioVideoManager::createSpecificGui(HWND& guiWindowReference)
 
     // Zoom In Button
     zoomButton = CreateWindow(L"BUTTON", L"Zoom In", WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,
-        0, 0, btnWidth, btnHeight, parentWindow, (HMENU)4, NULL, NULL);
+        0, 0, btnWidth, btnHeight, parentWindow, (HMENU)ID_ZOOM_IN_BUTTON, NULL, NULL);
     MoveWindow(zoomButton, width - btnWidth - btnMargin, btnMargin, btnWidth, btnHeight, TRUE);
+    EnableWindow(zoomButton, FALSE);
 
 }
-
 
 bool RawAudioVideoManager::setupMediaEngine()
 {
@@ -43,18 +41,11 @@ bool RawAudioVideoManager::setupMediaEngine()
     return true;
 }
 
-
 void RawAudioVideoManager::Run()
 {
     SetupGui();
-    // Setup an instance of the Video SDK.
     setupVideoSDKEngine();
-
     setupMediaEngine();
-
-    //setCutommSourceInput();
-
-    // Process messages
     gui->ProcessMessages();
 }
 
@@ -63,37 +54,24 @@ void RawAudioVideoManager::OnBnClickedZoomInZoomOutButton()
     // Toggle the zoom state
     isZoomed = !isZoomed;
 
-    // Get a handle to the parent control of the button
-    // We implemented the Agora Windows Get Started guide, using the button with ID 'IDC_BUTTON3' 
-    // for zoom in and zoom out functionality. However, please note that the button ID may differ 
-    // in your specific scenario.
-    CWnd* pParent = GetDlgItem(IDC_BUTTON3);
-
-    // Cast the control to a CButton object
-    CButton* pButtonCtrl = static_cast<CButton*>(pParent);
-
     // Set the button text based on the zoom state
     if (isZoomed)
     {
-        video_frame_observer->onCaptureVideoFrame(VideoFrame & videoFrame);
-        pButtonCtrl->SetWindowText(_T("Zoom Out"));
+        SetWindowText(zoomButton, L"Zoom Out");
     }
     else
     {
-        pButtonCtrl->SetWindowText(_T("Zoom In"));
+        SetWindowText(zoomButton, L"Zoom In");
     }
 }
-
-
-
 
 void RawAudioVideoManager::handleGuiAction(int commandId) 
 {
     // Handle new buttons
     switch (commandId)
     {
-    case ID_ZOOM_IN_BUTTON:				// On pressing Zoom In Button
-        // Handle play external audio button click
+    case ID_ZOOM_IN_BUTTON:				
+        // On pressing Zoom In/Zoom Out Button
         OnBnClickedZoomInZoomOutButton();
         break;
     default:
@@ -103,6 +81,78 @@ void RawAudioVideoManager::handleGuiAction(int commandId)
     }
 }
 
+void RawAudioVideoManager::createvideoCanvasAndJoin()
+{
+    // Check if the engine is successfully initialized.
+    if (agoraEngine == NULL)
+    {
+        MessageBox(NULL, L"Agora SDK Engine is not initialized", L"Error!", MB_ICONEXCLAMATION | MB_OK);
+        return;
+    }
+    
+    // Enable audio & video frame capture by registering the frames.
+    EnableAudioVideoCapture(TRUE);
+
+    // Enable the microphone to create the local audio stream.
+    agoraEngine->enableAudio();
+    // Enable the local video capturer.
+    agoraEngine->enableVideo();
+
+    // Setup a video canvas to render the local video.
+    VideoCanvas canvas;
+    // Assign the local user ID to canvas for identification.
+    canvas.uid = 1;
+    // Pass the local view window handle to canvas to render the local video.
+    canvas.view = gui->localView;
+    // Select a local video source.
+    canvas.sourceType = VIDEO_SOURCE_CAMERA;
+    // Render the local video.
+    agoraEngine->setupLocalVideo(canvas);
+    //agora::rtc::uid_t uid = this->uid;
+    // Preview the local video.
+    agoraEngine->startPreview();
+    // Join a channel to start video calling.
+    join();
+}
+
+void RawAudioVideoManager::join()
+{
+	expireTime = config["tokenExpiryTime"].asInt() ? config["tokenExpiryTime"].asInt() : 0;
+	serverUrl = config["tokenUrl"].asString();
+
+	if (token == "")
+	{
+		// Fetch new token 
+		token = fetchToken(serverUrl, channelName, tokenRole, uid, expireTime);
+		if (token == "")
+		{
+			MessageBox(NULL, L"Invalid Token : token server fetch failed.", L"Error!", MB_ICONEXCLAMATION | MB_OK);
+			return;
+		}
+	}
+
+	if (0 != agoraEngine->joinChannel(token.c_str(), channelName.c_str(), 0, NULL))
+	{
+		MessageBox(NULL, L"AgoraManager::joinChannel() error.", L"Error!", MB_ICONEXCLAMATION | MB_OK);
+		return;
+
+	}
+    else
+    {
+        // Joined successfully. So enabled the required button like "ZoomIN/ZoomOut
+        EnableWindow(zoomButton, TRUE);
+    }
+}
+
+void RawAudioVideoManager::leave()
+{
+    AgoraManager::leave();
+
+    // Unregister audio & video frame.
+    EnableAudioVideoCapture(FALSE);
+    // Disable ZoomIn/ZoomOut button
+    EnableWindow(zoomButton, FALSE);
+}
 
 bool RawAudioVideoManager::EnableAudioVideoCapture(bool bEnable)
 {
@@ -115,7 +165,6 @@ bool RawAudioVideoManager::EnableAudioVideoCapture(bool bEnable)
         return FALSE;
     if (bEnable)
     {
-        // Register video & audio frame observer
         nRet = mediaEngine->registerVideoFrameObserver(video_frame_observer);
         nRet = mediaEngine->registerAudioFrameObserver(audio_frame_observer);
 
@@ -138,14 +187,12 @@ bool RawAudioVideoManager::EnableAudioVideoCapture(bool bEnable)
     return nRet == 0 ? TRUE : FALSE;
 }
 
-
-
 // IVideoFrameObserver Implementation
 // "onCaptureVideoFrame()" is actually responsible for catching each frame on registering the video frame observer. 
-bool CustomVideoFrameObserver::onCaptureVideoFrame(VideoFrame& videoFrame)
+bool CustomVideoFrameObserver::onCaptureVideoFrame(agora::rtc::VIDEO_SOURCE_TYPE sourceType, VideoFrame& videoFrame)
 {
-    if (isZoomed) {
-
+    if (isZoomed) 
+    {
         int originalWidth = videoFrame.width;
         int originalHeight = videoFrame.height;
 
@@ -192,47 +239,15 @@ bool CustomVideoFrameObserver::onCaptureVideoFrame(VideoFrame& videoFrame)
         videoFrame.yBuffer = newYBuffer;
         videoFrame.uBuffer = newUBuffer;
         videoFrame.vBuffer = newVBuffer;
-
     }
-
     // Return true to indicate that pre-processing is successful and the frame should not be ignored
     return true;
 }
 
 //  getVideoFrameProcessMode() must override PROCESS_MODE_READ_WRITE in order for your raw data changes to take effect.
-IVideoFrameObserver::VIDEO_FRAME_PROCESS_MODE CustomVideoFrameObserver::getVideoFrameProcessMode() {
+IVideoFrameObserver::VIDEO_FRAME_PROCESS_MODE CustomVideoFrameObserver::getVideoFrameProcessMode() 
+{
     return VIDEO_FRAME_PROCESS_MODE::PROCESS_MODE_READ_WRITE;
-}
-
-// Rest the below functions are dummy "do-nothing" implentaion just to sake for overriding of interface pure virtual functions.
-bool CustomVideoFrameObserver::onSecondaryCameraCaptureVideoFrame(VideoFrame& videoFrame)
-{
-    return false;
-}
-
-bool CustomVideoFrameObserver::onSecondaryPreEncodeCameraVideoFrame(VideoFrame& videoFrame)
-{
-    return false;
-}
-
-bool CustomVideoFrameObserver::onScreenCaptureVideoFrame(VideoFrame& videoFrame)
-{
-    return false;
-}
-
-bool CustomVideoFrameObserver::onPreEncodeScreenVideoFrame(VideoFrame& videoFrame)
-{
-    return false;
-}
-
-bool CustomVideoFrameObserver::onSecondaryScreenCaptureVideoFrame(VideoFrame& videoFrame)
-{
-    return false;
-}
-
-bool CustomVideoFrameObserver::CustomVideoFrameObserver::onSecondaryPreEncodeScreenVideoFrame(VideoFrame& videoFrame)
-{
-    return false;
 }
 
 bool CustomVideoFrameObserver::onRenderVideoFrame(const char* channelId, rtc::uid_t remoteUid, VideoFrame& videoFrame)
@@ -240,7 +255,7 @@ bool CustomVideoFrameObserver::onRenderVideoFrame(const char* channelId, rtc::ui
     return false;
 }
 
-bool CustomVideoFrameObserver::onPreEncodeVideoFrame(VideoFrame& videoFrame)
+bool CustomVideoFrameObserver::onPreEncodeVideoFrame(agora::rtc::VIDEO_SOURCE_TYPE sourceType, VideoFrame& videoFrame)
 {
     return false;
 }
@@ -254,7 +269,6 @@ bool CustomVideoFrameObserver::onTranscodedVideoFrame(VideoFrame& videoFrame)
 {
     return false;
 }
-
 
 
 // IAudioFrameObserver Implementation

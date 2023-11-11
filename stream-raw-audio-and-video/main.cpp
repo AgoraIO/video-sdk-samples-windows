@@ -13,6 +13,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int)
 
     // Create the RawAudioVideoManager and associate it with the window
     RawAudioVideoManager* pManager = new RawAudioVideoManager(hInstance, appId, channelName, token);
-
+    
     pManager->Run();
 }

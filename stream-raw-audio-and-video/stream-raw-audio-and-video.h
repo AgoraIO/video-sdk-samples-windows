@@ -9,16 +9,10 @@ public:
 		delete[] originalUBuffer;
 		delete[] originalVBuffer;
 	}
-	virtual bool onCaptureVideoFrame(agora::rtc::VIDEO_SOURCE_TYPE sourceType, VideoFrame& videoFrame);
-	virtual bool onSecondaryCameraCaptureVideoFrame(VideoFrame& videoFrame)override;
-	virtual bool onSecondaryPreEncodeCameraVideoFrame(VideoFrame& videoFrame)override;
-	virtual bool onScreenCaptureVideoFrame(VideoFrame& videoFrame)override;
-	virtual bool onPreEncodeScreenVideoFrame(VideoFrame& videoFrame)override;
-	virtual bool onSecondaryScreenCaptureVideoFrame(VideoFrame& videoFrame)override;
-	virtual bool onSecondaryPreEncodeScreenVideoFrame(VideoFrame& videoFrame)override;
-	virtual bool onRenderVideoFrame(const char* channelId, rtc::uid_t remoteUid, VideoFrame& videoFrame)override;
-	virtual bool onPreEncodeVideoFrame(VideoFrame& videoFrame)override;
+	virtual bool onCaptureVideoFrame(agora::rtc::VIDEO_SOURCE_TYPE sourceType, VideoFrame& videoFrame)override;
+	virtual bool onPreEncodeVideoFrame(agora::rtc::VIDEO_SOURCE_TYPE sourceType, VideoFrame& videoFrame)override;
 	virtual bool onMediaPlayerVideoFrame(VideoFrame& videoFrame, int mediaPlayerId)override;
+	virtual bool onRenderVideoFrame(const char* channelId, rtc::uid_t remoteUid, VideoFrame& videoFrame)override;
 	virtual bool onTranscodedVideoFrame(VideoFrame& videoFrame)override;
 	virtual VIDEO_FRAME_PROCESS_MODE getVideoFrameProcessMode()override;
 private:
@@ -44,7 +38,6 @@ class RawAudioVideoEventHandler : public AgoraManagerEventHandler
 {
 public:
 	virtual ~RawAudioVideoEventHandler() = default;
-
 };
 
 class RawAudioVideoManager : public AgoraManager
@@ -58,31 +51,21 @@ public:
 
 	virtual void createSpecificGui(HWND& guiWindowReference)override;
 	virtual void handleGuiAction(int commandId) override;
+	virtual void createvideoCanvasAndJoin()override;
+	virtual void join()override;
+	virtual void leave()override;
 	void Run();
 
 	bool EnableAudioVideoCapture(bool bEnable);
-	
 	bool setupMediaEngine();
-
-	
 	void OnBnClickedZoomInZoomOutButton();
-
-	/*
-	LRESULT OnEIDRtcStats(WPARAM userCount, LPARAM packetLoss);
-	LRESULT OnEIDNetworkQuality(WPARAM txQuality, LPARAM rxQuality);
-	*/
 
 public:
 	HWND zoomButton;// UI element for a button to ZoomIn/ZoomOut
 	agora::util::AutoPtr<agora::media::IMediaEngine> mediaEngine;
+	
 	// Video and audio frame observers objects
-	std::shared_ptr<CustomVideoFrameObserver> video_frame_observer;
-	std::shared_ptr<CustomAudioFrameObserver> audio_frame_observer;
-
-	/*
-	CustomVideoFrameObserver* video_frame_observer ;
-	CustomAudioFrameObserver* audio_frame_observer ;
 	CustomVideoFrameObserver* video_frame_observer = new CustomVideoFrameObserver();
 	CustomAudioFrameObserver* audio_frame_observer = new CustomAudioFrameObserver();
-	*/
+	
 };
