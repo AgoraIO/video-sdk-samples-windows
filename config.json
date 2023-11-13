@@ -1,10 +1,10 @@
 {
     "uid":"1",
-    "appId":"",
-    "channel":"demo_test",
-    "rtcToken":"",
+    "appId":"b446c01ca25449c988ad884829c4cec7",
+    "channel":"pankaj_raw",
+    "rtcToken":"0063d8a110c08bc4a608694e4f67e67fe04IAClDdHZnYSRA8OusGmlskCuH1kLFsr2IK33RlwNTUy2nnkDNi+379yDEACOwAwCVfWMZAEAAQAvpItk",
     "proxyUrl":"http://localhost:8080/",
-    "tokenUrl":"",
+    "tokenUrl":"https://agora-token-service-production-10e3.up.railway.app",
     "tokenExpiryTime": 60,
     "encryptionMode": 1,
     "salt": "",
@@ -23,5 +23,6 @@
     "isCustomVideoSource": true,
     "isCustomAudioSource":true,
     "customVideoPath":"..\\custom_audio_and_video\\sample.mp4",
-    "customAudioPath":"..\\custom_audio_and_video\\sample_audio.wav"
+    "customAudioPath":"..\\custom_audio_and_video\\sample_audio.wav",
+	"virtualBackgoundImagePath":"..\\virtual_background\\sample_virtual_background_image.jpg" 
 }
