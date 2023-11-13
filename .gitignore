@@ -33,5 +33,7 @@ vc143.idb
 *.tlog
 
 # ignore changes done in config.json
-config.json
+#config.json
 
+# Exclude SDK, as it will be copied by user from latest SDK Repository
+sdk/
