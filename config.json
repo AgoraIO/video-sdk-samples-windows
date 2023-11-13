@@ -24,5 +24,5 @@
     "isCustomAudioSource":true,
     "customVideoPath":"..\\custom_audio_and_video\\sample.mp4",
     "customAudioPath":"..\\custom_audio_and_video\\sample_audio.wav",
-	"virtualBackgoundImagePath":"..\\virtual_background\\sample_virtual_background_image.jpg" 
+    "virtualBackgoundImagePath":"..\\virtual_background\\sample_virtual_background_image.jpg"
 }
