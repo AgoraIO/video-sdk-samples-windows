@@ -5,7 +5,6 @@
 
 #define ID_EXTERNAL_AUDIO_BTN 8
 
-
 void CustomAudioVideoSource::setCutommSourceInput()
 {
    isCustomVideoSource = AgoraManager::config["isCustomVideoSource"].asBool();
@@ -41,7 +40,6 @@ void CustomAudioVideoSource::createSpecificGui(HWND& guiWindowReference)
     EnableWindow(externalAudioBtn, FALSE);
 }
 
-
 void CustomAudioVideoSource::handleGuiAction(int commandId) {
     // Handle new buttons
     switch (commandId) {
@@ -56,8 +54,6 @@ void CustomAudioVideoSource::handleGuiAction(int commandId) {
         break;
     }
 }
-
-
 
 void CustomAudioVideoSource::OnBnClickedExternalAudioButton()
 {
@@ -100,7 +96,6 @@ void CustomAudioVideoSource::Run()
 	// Process messages
 	gui->ProcessMessages();
 }
-
 
 bool CustomAudioVideoSource::setupMediaEngine()
 {
@@ -253,7 +248,6 @@ void CustomAudioVideoSource::leave()
 
     EnableWindow(externalAudioBtn, FALSE);
 }
-
 
 void CustomAudioVideoSource::disableExternalVideoSource()
 {

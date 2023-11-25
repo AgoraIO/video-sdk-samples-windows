@@ -1,7 +1,7 @@
 // main.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
-#include "custom_audio_and_video.h"
+#include "play_media.h"
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int)
 {
@@ -11,8 +11,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int)
     std::string channelName = AgoraManager::config["channel"].asString();
     std::string token = AgoraManager::config["rtcToken"].asString();
 
-    // Create the CustomAudioVideoSource and associate it with the window
-    CustomAudioVideoSource* pManager = new CustomAudioVideoSource(hInstance, appId, channelName, token);
+    // Create the PlayMedia instace and associate it with the window
+    PlayMedia* pManager = new PlayMedia(hInstance, appId, channelName, token);
 
     pManager->Run();
 }
