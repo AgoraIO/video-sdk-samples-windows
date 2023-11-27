@@ -12,21 +12,16 @@ void CloudProxyEventHandler::onConnectionStateChanged(CONNECTION_STATE_TYPE stat
 			directConnectionFailed = true;
 			std::wstring message = L"Join failed, reason: " + std::to_wstring(reason);
 			MessageBox(NULL, message.c_str(), L"Notification", NULL);
-
-			
-		}
+        }
 		else if (state == CONNECTION_CHANGED_SETTING_PROXY_SERVER) {
 			MessageBox(NULL, L"Proxy server setting changed", L"Notification", NULL);
-			
 		}
 	}
-
 }
 
-
-
 void CloudProxy::join() {
-    if (directConnectionFailed) {
+    if (directConnectionFailed) 
+    {
         // Attempt to set up UDP proxy
         int proxyStatus = agoraEngine->setCloudProxy(CLOUD_PROXY_TYPE::UDP_PROXY);
         if (proxyStatus == 0) {
@@ -51,7 +46,8 @@ void CloudProxy::join() {
         std::wstring tcpErrorMessage = L"TCP Proxy service setup failed with error: " + std::to_wstring(proxyStatus);
         MessageBox(NULL, tcpErrorMessage.c_str(), L"Notification", NULL);
     }
-    else {
+    else 
+    {
         AgoraManager::join();
     }
 }

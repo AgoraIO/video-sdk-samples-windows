@@ -2,7 +2,7 @@
     "uid":"1",
     "appId":"",
     "channel":"demo_test",
-    "rtcToken":"",
+    "rtcToken":
     "proxyUrl":"http://localhost:8080/",
     "tokenUrl":"",
     "tokenExpiryTime": 60,
@@ -24,6 +24,7 @@
 	"isCustomAudioSource":true,
 	"customVideoPath":"..\\custom_audio_and_video\\sample.mp4",
 	"customAudioPath":"..\\custom_audio_and_video\\sample_audio.wav",
-	"playMediaVideoFileURL":"https://www.appsloveworld.com/wp-content/uploads/2018/10/640.mp4"
-	"virtualBackgoundImagePath":"..\\virtual_background\\sample_virtual_background_image.jpg" 
+	"playMediaVideoFileURL":"https://www.appsloveworld.com/wp-content/uploads/2018/10/640.mp4",
+	"virtualBackgoundImagePath":"..\\virtual_background\\sample_virtual_background_image.jpg", 
+	"areaCode": "AREA_CODE_GLOB"
 }
