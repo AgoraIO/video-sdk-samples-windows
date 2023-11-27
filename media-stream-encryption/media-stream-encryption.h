@@ -1,8 +1,7 @@
 #pragma once
 #include "agora_manager.h"
-
 #include "opencv2/opencv.hpp" 
-#include "../agora_manager/sdk/high_level_api/include/AgoraBase.h"
+
 
 class MediaStreamEncryptionEventHandler : public AgoraManagerEventHandler
 {
@@ -23,16 +22,14 @@ public:
 	virtual void setupVideoSDKEngine() override;
 
 	void enableEncryption();
-
 	ENCRYPTION_MODE getEncriptionMode();
-
 	void setEncryptionConfigInput();
 
 public:
 	// In a production environment, you retrieve the key and salt from
 	// an authentication server. For this code example you generate them locally.
 
-	// EncryptionMode
+	// Encryption Mode
 	ENCRYPTION_MODE enCryptionModeInput = ENCRYPTION_MODE::AES_256_GCM2;
 
 	// A 32-byte string for encryption.
@@ -40,7 +37,6 @@ public:
 
 	// A 32-byte string in Base64 format for encryption.
 	std::string encryptionSaltBase64 = "";
-
 };
 
 

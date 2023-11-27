@@ -37,7 +37,7 @@ void MediaStreamEncryptionManager::setEncryptionConfigInput()
     encryptionKey = AgoraManager::config["encryptionKey"].asString();
     // A 32-byte string in Base64 format for encryption.
     encryptionSaltBase64 = AgoraManager::config["salt"].asString();
-
+    // Get Encryption Mode Input 
     enCryptionModeInput = getEncriptionMode();
 }
 
@@ -56,7 +56,6 @@ ENCRYPTION_MODE MediaStreamEncryptionManager::getEncriptionMode()
         case 7: return ENCRYPTION_MODE::AES_128_GCM2;
         case 8: return ENCRYPTION_MODE::AES_256_GCM2;
         default: return ENCRYPTION_MODE::AES_256_GCM2;
-        
     }
 }
 
