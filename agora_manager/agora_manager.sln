@@ -40,6 +40,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "stream-raw-audio-and-video"
 		{CB5245FE-A37F-4863-ADE8-717E6093F5D9} = {CB5245FE-A37F-4863-ADE8-717E6093F5D9}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "audio-and-voice-effects", "..\audio-and-voice-effects\audio-and-voice-effects.vcxproj", "{BCA8BCBA-AA10-44E1-83C9-807F2C86AC96}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CB5245FE-A37F-4863-ADE8-717E6093F5D9} = {CB5245FE-A37F-4863-ADE8-717E6093F5D9}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -112,6 +117,14 @@ Global
 		{CF83017F-B3FC-4AF2-9858-99C88630DFAF}.Release|x64.Build.0 = Release|x64
 		{CF83017F-B3FC-4AF2-9858-99C88630DFAF}.Release|x86.ActiveCfg = Release|Win32
 		{CF83017F-B3FC-4AF2-9858-99C88630DFAF}.Release|x86.Build.0 = Release|Win32
+		{BCA8BCBA-AA10-44E1-83C9-807F2C86AC96}.Debug|x64.ActiveCfg = Debug|x64
+		{BCA8BCBA-AA10-44E1-83C9-807F2C86AC96}.Debug|x64.Build.0 = Debug|x64
+		{BCA8BCBA-AA10-44E1-83C9-807F2C86AC96}.Debug|x86.ActiveCfg = Debug|Win32
+		{BCA8BCBA-AA10-44E1-83C9-807F2C86AC96}.Debug|x86.Build.0 = Debug|Win32
+		{BCA8BCBA-AA10-44E1-83C9-807F2C86AC96}.Release|x64.ActiveCfg = Release|x64
+		{BCA8BCBA-AA10-44E1-83C9-807F2C86AC96}.Release|x64.Build.0 = Release|x64
+		{BCA8BCBA-AA10-44E1-83C9-807F2C86AC96}.Release|x86.ActiveCfg = Release|Win32
+		{BCA8BCBA-AA10-44E1-83C9-807F2C86AC96}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
