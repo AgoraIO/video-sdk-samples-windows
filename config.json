@@ -7,8 +7,8 @@
     "tokenUrl":"",
     "tokenExpiryTime": 60,
     "encryptionMode": 1,
+    "encryptionKey": "",
     "salt": "",
-    "cipherKey": "",
     "presenceTimeout": 300,
     "logUpload": false,
     "logFilter": {
