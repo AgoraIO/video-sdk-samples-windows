@@ -53,10 +53,16 @@ To run a sample project in this repository, take the following steps:
       ```  
    1. Install the required packages:
       ```bash
-        .\vcpkg.exe install jsoncpp:x64-windows
-        .\vcpkg.exe install curl:x64-windows
-        .\vcpkg.exe install opencv:x64-windows
+      .\vcpkg.exe install jsoncpp:x64-windows
+      .\vcpkg.exe install curl:x64-windows
+      .\vcpkg.exe install opencv:x64-windows
       ```
+   1. Ensure `vcpkg` Integration with Visual Studio:
+	  Make sure you have integrated vcpkg with Visual Studio. After cloning vcpkg and installing libraries, you need to run the integration command:
+	  ```bash
+	  ./vcpkg.exe integrate install
+	  ```
+	  This command should provide a message indicating successful integration with Visual Studio.
 
 1. **Modify the project configuration**
 
