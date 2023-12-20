@@ -10,8 +10,10 @@
 
 void SpatialAudioManager::configureSpatialAudioEngine()
 {
-    distanceBarSlider = (CSliderCtrl*)GetDlgItem(IDC_SLIDER1);
-    distanceBarSlider->SetRange(0, (int)10, TRUE);
+    //distanceBarSlider = (CSliderCtrl*)GetDlgItem(IDC_SLIDER1);
+    //distanceBarSlider->SetRange(0, (int)10, TRUE);
+    SendMessage(distanceBarSlider, TBM_SETRANGE, (WPARAM)TRUE, (LPARAM)MAKELONG(0, 10));
+
     LocalSpatialAudioConfig localSpatialAudioConfig;
     localSpatialAudioConfig.rtcEngine = agoraEngine;
     agoraEngine->queryInterface(AGORA_IID_LOCAL_SPATIAL_AUDIO, (void**)&localSpatial);
