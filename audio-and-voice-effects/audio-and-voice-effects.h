@@ -24,6 +24,8 @@ public:
     virtual void handleGuiUserMsg(int msgId, WPARAM wparam, LPARAM lparam)override;
     virtual void join() override;
     virtual void leave() override;
+
+    void setSourceInputfromConfiguration();
     
     void OnClickedAudioEffect();
     void OnClickedVoiceEffects();
@@ -33,11 +35,11 @@ public:
 
 public:
     int soundEffectId = 1; // Unique identifier for the sound effect file
-    std::string soundEffectFilePath = "https://www.soundjay.com/human/applause-01.mp3"; // like "https://www.soundjay.com/human/applause-01.mp3"
+    std::string soundEffectURL = ""; // like "https://www.soundjay.com/human/applause-01.mp3" : read from configuration
     int soundEffectStatus = 0;
     int voiceEffectIndex = 0;
     bool audioPlaying = false; // Manage the audio mixing state
-    std::string audioFilePath = "https://www.kozco.com/tech/organfinale.mp3"; // like  "https://www.kozco.com/tech/organfinale.mp3"
+    std::string audioURL = ""; // like  "https://www.kozco.com/tech/organfinale.mp3" : read from configuration
     HWND playAudioEffectButton; // A HWND to reference the play audio effect button
     HWND voiceEffectButton; // A HWND to reference the voice effect button
     HWND audioMixingButton; // A HWND to reference the audio mixing button

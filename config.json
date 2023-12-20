@@ -24,6 +24,8 @@
 	"isCustomAudioSource":true,
 	"customVideoPath":"..\\custom_audio_and_video\\sample.mp4",
 	"customAudioPath":"..\\custom_audio_and_video\\sample_audio.wav",
-	"playMediaVideoFileURL":"https://www.appsloveworld.com/wp-content/uploads/2018/10/640.mp4"
-	"virtualBackgoundImagePath":"..\\virtual_background\\sample_virtual_background_image.jpg" 
+	"playMediaVideoFileURL":"https://www.appsloveworld.com/wp-content/uploads/2018/10/640.mp4",
+	"virtualBackgoundImagePath":"..\\virtual_background\\sample_virtual_background_image.jpg",
+	"soundEffectURL":"https://www.soundjay.com/human/applause-01.mp3",
+	"audioURL":"https://www.kozco.com/tech/organfinale.mp3"
 }

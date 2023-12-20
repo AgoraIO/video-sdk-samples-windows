@@ -8,6 +8,12 @@
 
 #define EID_STOP_EFFECT 25
 
+void AudioVoiceEffectsManager::setSourceInputfromConfiguration()
+{
+	std::string soundEffectURL = AgoraManager::config["soundEffectURL"].asString();
+	std::string audioURL = AgoraManager::config["audioURL"].asString();
+}
+
 void AudioVoiceEffectsManager::handleGuiAction(int commandId)
 {
 	switch (commandId) {
@@ -38,7 +44,7 @@ void AudioVoiceEffectsManager::OnClickedAudioEffect()
 		// Stopped
 		agoraEngine->playEffect(
 			soundEffectId,   // The ID of the sound effect file.
-			soundEffectFilePath.c_str(),   // The path of the sound effect file.
+			soundEffectURL.c_str(),   // The path of the sound effect file.
 			0,  // The number of sound effect loops. -1 means an infinite loop. 0 means once.
 			1,   // The pitch of the audio effect. 1 represents the original pitch.
 			0.0, // The spatial position of the audio effect. 0.0 represents that the audio effect plays in the front.
@@ -119,7 +125,7 @@ void AudioVoiceEffectsManager::OnClickedAudioMixing()
 	if (audioPlaying)
 	{
 		SetWindowText(audioMixingButton, L"Stop Mixing");
-		agoraEngine->startAudioMixing(audioFilePath.c_str(), false, 1, 0);
+		agoraEngine->startAudioMixing(audioURL.c_str(), false, 1, 0);
 	}
 	else
 	{
@@ -146,12 +152,15 @@ void AudioVoiceEffectsManager::setupVideoSDKEngine()
 	AgoraManager::setupVideoSDKEngine();
 
 	// Load sound effects in advance to improve performance
-	agoraEngine->preloadEffect(soundEffectId, soundEffectFilePath.c_str());
+	agoraEngine->preloadEffect(soundEffectId, soundEffectURL.c_str());
 
 	// Set an Audio Profile
 	// Specify the audio scenario and audio profile
 	agoraEngine->setAudioProfile(AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO);
 	agoraEngine->setAudioScenario(AUDIO_SCENARIO_GAME_STREAMING);
+
+	// Get source input from configuration
+	setSourceInputfromConfiguration();
 }
 
 
