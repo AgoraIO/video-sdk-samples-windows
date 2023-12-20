@@ -2,13 +2,13 @@
     "uid":"1",
     "appId":"",
     "channel":"demo_test",
-    "rtcToken":"",
+    "rtcToken":
     "proxyUrl":"http://localhost:8080/",
     "tokenUrl":"",
     "tokenExpiryTime": 60,
     "encryptionMode": 1,
+    "encryptionKey": "",
     "salt": "",
-    "cipherKey": "",
     "presenceTimeout": 300,
     "logUpload": false,
     "logFilter": {
@@ -27,5 +27,6 @@
 	"playMediaVideoFileURL":"https://www.appsloveworld.com/wp-content/uploads/2018/10/640.mp4",
 	"virtualBackgoundImagePath":"..\\virtual_background\\sample_virtual_background_image.jpg",
 	"soundEffectURL":"https://www.soundjay.com/human/applause-01.mp3",
-	"audioURL":"https://www.kozco.com/tech/organfinale.mp3"
+	"audioURL":"https://www.kozco.com/tech/organfinale.mp3",	
+	"areaCode": "AREA_CODE_GLOB"
 }
